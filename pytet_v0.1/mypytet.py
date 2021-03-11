@@ -41,6 +41,7 @@ O = [ [ 1, 1 ], [ 1, 1 ] ]
 S = [ [ 0, 1, 1 ], [ 1, 1, 0 ], [ 0, 0, 0 ] ]
 T = [ [ 1, 1, 1 ], [ 0, 1, 0 ], [ 0, 0, 0 ] ]
 Z = [ [ 1, 1, 0 ], [ 0, 1, 1 ], [ 0, 0, 0 ] ]
+arrayblock=[I,J,L,O,S,T,Z]
 ### integer variables: must always be integer!
 iScreenDy = 15
 iScreenDx = 10
@@ -75,23 +76,7 @@ arrayScreen = [
 ### prepare the initial screen output
 ###  
 randNum = random.randrange(0,6)
-if randNum == 0:
-    arrayBlk = I
-elif randNum == 1:
-    arrayBlk = J
-    left += 1
-elif randNum == 2:
-    arrayBlk = L
-elif randNum == 3:
-    arrayBlk = O
-    left += 1
-elif randNum == 4:
-    arrayBlk = S
-elif randNum == 5:
-    arrayBlk = T
-elif randNum == 6:
-    arrayBlk = Z
-currBlk = Matrix(arrayBlk)
+currBlk = Matrix(arrayblock[randNum])
 iScreen = Matrix(arrayScreen)
 oScreen = Matrix(iScreen)
 tempBlk = iScreen.clip(top, left, top+currBlk.get_dy(), left+currBlk.get_dx())
@@ -161,23 +146,7 @@ while True:
         left = iScreenDw + iScreenDx//2 - 2
         newBlockNeeded = False
         randNum = random.randrange(0,6)
-        if randNum == 0:
-            arrayBlk = I
-        elif randNum == 1:
-            arrayBlk = J
-            left += 1
-        elif randNum == 2:
-            arrayBlk = L
-        elif randNum == 3:
-            arrayBlk = O
-            left += 1
-        elif randNum == 4:
-            arrayBlk = S
-        elif randNum == 5:
-            arrayBlk = T
-        elif randNum == 6:
-            arrayBlk = Z
-        currBlk = Matrix(arrayBlk)
+        currBlk = Matrix(arrayblock[randNum])
         tempBlk = iScreen.clip(top, left, top+currBlk.get_dy(), left+currBlk.get_dx())
         tempBlk = tempBlk + currBlk
         if tempBlk.anyGreaterThan(1):
